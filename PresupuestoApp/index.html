@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación de Presupuesto</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-main">
+        <!-- Sección de encabezado con presupuesto -->
+        <div class="header-section">
+            <h1 class="budget-title" id="budgetTitle">Presupuesto de Octubre 2025</h1>
+            <div class="budget-amount" id="totalBudget">+ 500.00</div>
+
+            <!-- Cajas de resumen -->
+            <div class="summary-boxes">
+                <div class="summary-box income-box">
+                    <div class="summary-label">Ingresos:</div>
+                    <div class="summary-amount" id="totalIncome">+800.00</div>
+                </div>
+                <div class="summary-box expense-box">
+                    <div class="summary-label">Egresos:</div>
+                    <div class="summary-amount" id="totalExpense">-300.00</div>
+                </div>
+            </div>
+
+            <!-- Porcentaje de gastos -->
+            <div class="expense-percentage">
+                <span>Porcentaje de gastos:</span>
+                <span class="percentage-label" id="expensePercentage">12%</span>
+            </div>
+        </div>
+
+        <!-- Sección de agregar transacciones -->
+        <div class="transaction-section">
+            <h2 class="transaction-title">Transacción</h2>
+            <form id="transactionForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select id="transactionType" class="form-control" required>
+                                <option value="" disabled selected>Ingreso | Egreso</option>
+                                <option value="ingreso">Ingreso</option>
+                                <option value="egreso">Egreso</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="transactionDescription" placeholder="Descripción">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="transactionAmount" placeholder="Monto">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn-add">Agregar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Sección de detalles con tabs -->
+        <div class="details-section">
+            <div class="tabs">
+                <button class="tab-button active" id="incomeTab">Ingresos</button>
+                <button class="tab-button" id="expenseTab">Egresos</button>
+            </div>
+
+            <!-- Lista de ingresos -->
+            <div class="transaction-list active" id="incomeList">
+                <div class="transaction-item">
+                    <span class="transaction-description">Salario 1</span>
+                    <span class="transaction-amount income-amount">+ 400.00</span>
+                </div>
+                <div class="transaction-item">
+                    <span class="transaction-description">Salario 2</span>
+                    <span class="transaction-amount income-amount">+ 400.00</span>
+                </div>
+                <buttom id="tabIncome">Ingresos</buttom>
+            </div>
+
+            <!-- Lista de egresos -->
+            <div class="transaction-list" id="expenseList">
+                <div class="transaction-item">
+                    <span class="transaction-description">Renta</span>
+                    <span class="transaction-amount expense-amount">- 200.00</span>
+                    <span class="transaction-percentage">25%</span>
+                </div>
+                <div class="transaction-item">
+                    <span class="transaction-description">Comida</span>
+                    <span class="transaction-amount expense-amount">- 100.00</span>
+                    <span class="transaction-percentage">12.5%</span>
+                </div>
+                <buttom id="tabExpense">Egresos</buttom>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidad básica de tabs 
+        document.getElementById('incomeTab').addEventListener('click', function() {
+            document.getElementById('incomeTab').classList.add('active');
+            document.getElementById('expenseTab').classList.remove('active');
+            document.getElementById('incomeList').classList.add('active');
+            document.getElementById('expenseList').classList.remove('active');
+        });
+
+        document.getElementById('expenseTab').addEventListener('click', function() {
+            document.getElementById('expenseTab').classList.add('active');
+            document.getElementById('incomeTab').classList.remove('active');
+            document.getElementById('expenseList').classList.add('active');
+            document.getElementById('incomeList').classList.remove('active');
+        });
+    </script>
+    <script defer src="js/calculos.js"></script>
+    <script defer src="js/transacciones.js"></script> 
+    <script defer src="js/app.js"></script>
+    <script src="js/ui.js"></script> 
+</body>
+</html>
